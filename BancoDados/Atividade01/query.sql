@@ -1,0 +1,1 @@
+select id_products from products where names_product = 'Ovo Frito';

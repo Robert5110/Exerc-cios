@@ -18,7 +18,7 @@ emails_clientes VARCHAR(255)
 );
 
 CREATE TABLE products (
-id INT auto_increment PRIMARY KEY,
+id_products INT auto_increment PRIMARY KEY,
 names_product VARCHAR(255),
 prices_product float,
 );
@@ -26,20 +26,20 @@ prices_product float,
 --Tabela que relaciona as mesas com os pedidos
 CREATE TABLE orders (
 id_orders INT PRIMARY KEY,
-tId INT,
-cId INT,
+id_table INT,
+id_clientes INT,
 dates DATE,
-status ENUM('reservado', 'cancelado', 'aberto', 'pagamento', 'fechado'),
-FOREIGN KEY (tId) REFERENCES mesa(id_table),
-FOREIGN KEY (cId) REFERENCES clients(id_clients)
+reserva ENUM('reservado', 'cancelado', 'aberto', 'pagamento', 'fechado'),
+FOREIGN KEY (id_table) REFERENCES mesa(id_table),
+FOREIGN KEY (id_clientes) REFERENCES clients(id_clientes)
 );
 
 
 CREATE TABLE productsches (
-sId INT,
-pId INT,
+id_orders INT,
+id_products INT,
 quantitys INT,
-FOREIGN KEY (sId) REFERENCES orders(id),
-FOREIGN KEY (pId) REFERENCES products(id),
-PRIMARY KEY (sId, pId)
+FOREIGN KEY (id_orders) REFERENCES orders(id_orders),
+FOREIGN KEY (id_products) REFERENCES products(id_products),
+PRIMARY KEY (id_orders, id_products)
 );
