@@ -1,4 +1,10 @@
-CREATE TABLE table (
+--Criação do banco de dados restaurante	
+CREATE database restaurante;
+
+--Criação das tabelas
+use restaurante;
+
+CREATE TABLE mesa (
 id_table INT auto_increment PRIMARY KEY ,
 locations INT,
 hourvalues float,
@@ -14,18 +20,20 @@ emails_clientes VARCHAR(255)
 CREATE TABLE products (
 id INT auto_increment PRIMARY KEY,
 names_product VARCHAR(255),
-prices_product DECIMAL(10,2)
+prices_product float,
 );
 
+--Tabela que relaciona as mesas com os pedidos
 CREATE TABLE orders (
-id INT PRIMARY KEY,
+id_orders INT PRIMARY KEY,
 tId INT,
 cId INT,
 dates DATE,
-status ENUM('reserved', 'canceled', 'open', 'payment', 'closed'),
-FOREIGN KEY (tId) REFERENCES locations(id),
-FOREIGN KEY (cId) REFERENCES clients(id)
+status ENUM('reservado', 'cancelado', 'aberto', 'pagamento', 'fechado'),
+FOREIGN KEY (tId) REFERENCES mesa(id_table),
+FOREIGN KEY (cId) REFERENCES clients(id_clients)
 );
+
 
 CREATE TABLE productsches (
 sId INT,
